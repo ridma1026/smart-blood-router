@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Donor Response Update</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .header { background-color: #007bff; color: white; padding: 20px; text-align: center; }
+        .content { padding: 20px; background-color: #f8f9fa; }
+        .accepted { color: #28a745; font-weight: bold; }
+        .declined { color: #dc3545; font-weight: bold; }
+        .footer { text-align: center; padding: 20px; color: #6c757d; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Donor Response Update</h1>
+    </div>
+    <div class="content">
+        <h2>Dear <span th:text="${hospitalName}">Hospital</span>,</h2>
+
+        <p>Donor <strong th:text="${donorName}">Donor Name</strong> has
+            <span th:text="${status}" th:class="${status == 'ACCEPTED' ? 'accepted' : 'declined'}">ACCEPTED</span>
+            your blood request.</p>
+
+        <div th:if="${status == 'ACCEPTED'}" style="background-color: #d4edda; padding: 15px; border-radius: 5px;">
+            <h3>Great news! A donor is coming to help.</h3>
+            <p>Please prepare for their arrival.</p>
+        </div>
+
+        <div th:if="${status == 'DECLINED'}" style="background-color: #f8d7da; padding: 15px; border-radius: 5px;">
+            <h3>Donor declined</h3>
+            <p>We will continue searching for other matching donors.</p>
+        </div>
+
+        <div style="text-align: center; margin: 30px 0;">
+            <a th:href="${requestUrl}" class="button" style="background-color: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">View Request Details</a>
+        </div>
+    </div>
+    <div class="footer">
+        <p>Smart Blood Router System</p>
+    </div>
+</div>
+</body>
+</html>

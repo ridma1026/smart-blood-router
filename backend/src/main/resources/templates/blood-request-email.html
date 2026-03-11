@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Urgent Blood Request</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .header { background-color: #dc3545; color: white; padding: 20px; text-align: center; }
+        .content { padding: 20px; background-color: #f8f9fa; }
+        .button { display: inline-block; padding: 10px 20px; background-color: #28a745;
+                  color: white; text-decoration: none; border-radius: 5px; margin: 10px; }
+        .footer { text-align: center; padding: 20px; color: #6c757d; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>⚠️ Urgent Blood Request</h1>
+    </div>
+    <div class="content">
+        <h2>Dear <span th:text="${donorName}">Donor</span>,</h2>
+        <p>A hospital urgently needs your help!</p>
+
+        <div style="background-color: white; padding: 15px; border-radius: 5px;">
+            <h3>Request Details:</h3>
+            <p><strong>Hospital:</strong> <span th:text="${hospitalName}">Hospital Name</span></p>
+            <p><strong>Blood Type Needed:</strong> <span th:text="${bloodType}" style="color: #dc3545; font-size: 1.2em;">O_POS</span></p>
+            <p><strong>Urgency Level:</strong> <span th:text="${urgency}" style="color: #dc3545;">HIGH</span></p>
+        </div>
+
+        <div style="text-align: center; margin: 30px 0;">
+            <!-- Fixed: Using @{...} syntax for URL with parameters -->
+            <a th:href="@{${responseUrl}}" class="button" style="background-color: #28a745;">I Can Donate</a>
+            <a th:href="@{${responseUrl}(decline=true)}" class="button" style="background-color: #6c757d;">Not Available</a>
+        </div>
+
+        <p><strong>Please respond as soon as possible. Every minute counts!</strong></p>
+    </div>
+    <div class="footer">
+        <p>This is an automated message from Smart Blood Router System</p>
+    </div>
+</div>
+</body>
+</html>
